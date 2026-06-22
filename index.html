@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flujo de Alta de Paciente · ACHS — Orquestra</title>
+  <meta name="description" content="Validación visual del proceso de alta hospitalaria de ACHS: diagrama de estados, proceso paso a paso y matriz de notificaciones. Por Orquestra." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+  <!-- ============================ HEADER ============================ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Marca PRIMARIA: Orquestra -->
+      <a class="brand" href="#" aria-label="Orquestra by eGenya">
+        <svg class="brand-mark" width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+          <g class="dots-left">
+            <circle cx="3" cy="4" r="1.5"/><circle cx="8" cy="4" r="1.5"/><circle cx="13" cy="4" r="1.5"/>
+            <circle cx="3" cy="9" r="1.5"/><circle cx="8" cy="9" r="1.5"/><circle cx="13" cy="9" r="1.5"/>
+            <circle cx="3" cy="14" r="1.5"/><circle cx="8" cy="14" r="1.5"/><circle cx="13" cy="14" r="1.5"/>
+          </g>
+          <rect class="bar" x="16.2" y="2" width="2.4" height="30" rx="1.2"/>
+          <g class="dots-right">
+            <circle cx="22" cy="4" r="1.5"/><circle cx="27" cy="4" r="1.5"/><circle cx="32" cy="4" r="1.5"/>
+            <circle cx="22" cy="9" r="1.5"/><circle cx="27" cy="9" r="1.5"/><circle cx="32" cy="9" r="1.5"/>
+            <circle cx="22" cy="14" r="1.5"/><circle cx="27" cy="14" r="1.5"/><circle cx="32" cy="14" r="1.5"/>
+          </g>
+        </svg>
+        <span class="brand-word">
+          <span class="brand-name">Orquestra</span>
+          <span class="brand-sub">by eGenya</span>
+        </span>
+      </a>
+      <div class="client-tag" title="Cliente del piloto">
+        <span class="client-dot" aria-hidden="true"></span>
+        <span class="client-label">Proyecto</span>
+        <span class="client-name">ACHS</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main">
+
+    <!-- ===================== TÍTULO + SUMMARY ====================== -->
+    <div class="title-row">
+      <div class="title-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/>
+          <rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M6.5 10v4M17.5 10v4M10 17.5h4"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="title-main">Flujo de Alta de Paciente · <span class="title-client">ACHS</span></h1>
+        <p class="title-sub">Orquestra · Validación visual del proceso de alta y disponibilización de camas</p>
+      </div>
+    </div>
+
+    <div class="summary-bar" id="summary-bar"><!-- render JS --></div>
+
+    <!-- ===================== TABS + LEYENDA ======================= -->
+    <div class="tabs-row">
+      <nav class="tabs" role="tablist" aria-label="Secciones">
+        <button class="tab" role="tab" aria-selected="true"  data-tab="diagrama">◳ Diagrama</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="pasos">▤ Pasos</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="notificaciones">◔ Notificaciones</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="perfiles">◴ Perfiles</button>
+      </nav>
+    </div>
+
+    <!-- Panel: Diagrama -->
+    <section class="tab-panel is-active" id="panel-diagrama" role="tabpanel">
+      <div class="diagram-layout">
+        <div class="card diagram-card">
+          <div class="card-head">
+            <h2>Diagrama Interactivo de Estados</h2>
+            <p>Haz clic en cualquier estado para ver los detalles y transiciones disponibles.</p>
+          </div>
+          <div class="card-body">
+            <h3 class="diagram-title">Flujo Operativo de Camas · ACHS</h3>
+            <div class="diagram-svg-wrap" id="diagram-svg-wrap"><!-- SVG render JS --></div>
+          </div>
+        </div>
+        <aside class="card state-detail" id="state-detail"><!-- render JS --></aside>
+      </div>
+    </section>
+
+    <!-- Panel: Pasos -->
+    <section class="tab-panel" id="panel-pasos" role="tabpanel" hidden>
+      <div class="card">
+        <div class="card-head">
+          <h2>Proceso Paso a Paso</h2>
+          <p>Resumen de cada paso del flujo: actividad, trigger, transición, datos capturados y notificaciones.</p>
+        </div>
+        <div class="card-body" id="steps-body"><!-- render JS --></div>
+      </div>
+    </section>
+
+    <!-- Panel: Notificaciones -->
+    <section class="tab-panel" id="panel-notificaciones" role="tabpanel" hidden>
+      <div class="card">
+        <div class="card-head">
+          <h2>Matriz de Notificaciones WhatsApp</h2>
+          <p>Todas las notificaciones automáticas enviadas durante el flujo.</p>
+        </div>
+        <div class="card-body">
+          <div class="matrix-controls" id="matrix-controls"><!-- render JS --></div>
+          <div id="matrix-body"><!-- render JS --></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Panel: Perfiles -->
+    <section class="tab-panel" id="panel-perfiles" role="tabpanel" hidden>
+      <div class="card">
+        <div class="card-head">
+          <h2>Perfiles</h2>
+          <p>Perfiles del flujo: qué acciones ejecuta cada uno y qué notificaciones recibe.</p>
+        </div>
+        <div class="card-body" id="perfiles-body"><!-- render JS --></div>
+      </div>
+    </section>
+
+    <p class="disclaimer">Este documento visual es para validación del flujo de ACHS implementado en Orquestra. Basado en la ficha del proceso.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Orquestra — Trazabilidad operativa para operaciones de salud</span>
+      <span class="footer-meta">Proyecto ACHS · <a href="mailto:hola@egenya.cl">hola@egenya.cl</a></span>
+    </div>
+  </footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
